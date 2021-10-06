@@ -3,6 +3,7 @@
   yum:
     name: "https://download.postgresql.org/pub/repos/yum/reporpms/{{ OSVersion }}-{{ architecture }}/pgdg-redhat-repo-latest.noarch.rpm"
     state: present
+    disable_gpg_check: True
 
 - name: Install Postgresql
   yum:
