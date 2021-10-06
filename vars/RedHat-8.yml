@@ -1,0 +1,3 @@
+---
+OSVersion: EL-8
+systemdService: "postgresql-{{ postgresVersion }}"

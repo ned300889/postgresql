@@ -1,0 +1,21 @@
+---
+- name: Install postgres repo
+  yum:
+    name: "https://download.postgresql.org/pub/repos/yum/reporpms/{{ OSVersion }}-{{ architecture }}/pgdg-redhat-repo-latest.noarch.rpm"
+    state: present
+
+- name: Install Postgresql
+  yum:
+    name: postgresql{{ postgresVersion}}-server
+    state: present
+
+- name: Check if data folder is empty before proceeding
+  find:
+    paths: '/var/lib/pgsql/{{ postgresVersion }}/data/'
+  register: data
+
+- name: Setup db 
+  command: |
+    /usr/pgsql-{{ postgresVersion }}/bin/postgresql-{{ postgresVersion }}-setup initdb
+  when: data.matched == 0
+  notify: Enable webstack

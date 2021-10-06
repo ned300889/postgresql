@@ -1,0 +1,17 @@
+---
+- name: template deb package
+  template:
+    src: pgdg.list.j2
+    dest: /etc/apt/sources.list.d/pgdg.list
+
+- name: Import key
+  apt_key:
+    url: https://www.postgresql.org/media/keys/ACCC4CF8.asc
+    state: present
+
+- name: Update cache and install desired postgres version
+  apt:
+    name: "postgresql-{{ postgresVersion }}"
+    update_cache: true
+    state: present
+  notify: Enable webstack

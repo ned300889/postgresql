@@ -1,2 +1,6 @@
 ---
-# handlers file for postgresql
+- name: Enable webstack
+  ansible.builtin.service:
+    name: "{{ systemdService }}"
+    state: started
+    enabled: true

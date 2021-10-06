@@ -1,2 +1,4 @@
 ---
-# defaults file for postgresql
+architecture: x86_64
+postgresVersion: 14
+systemdService: postgresql

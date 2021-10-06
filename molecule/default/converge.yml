@@ -1,6 +1,17 @@
 ---
 - name: Converge
   hosts: all
+  become: true
+  pre_tasks:
+    - name: Install gpg-agent
+      apt:
+        name: gpg-agent
+        state: present
+        update_cache: true
+      when: ansible_os_family == 'Debian'
+    - name: Include boostrap prior to running playbook
+      include_role: 
+        name: ned300889.bootstrap
   tasks:
     - name: "Include postgresql"
       include_role:
