@@ -14,7 +14,9 @@ jobs:
       fail-fast: false
       matrix:
         scenario:
-          - fedora34
+          - centos7
+          - centos8
+          - ubuntu1804 
           - ubuntu2004
     steps:
       - name: Checkout
