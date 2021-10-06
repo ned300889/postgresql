@@ -24,7 +24,7 @@ Example Playbook
       become: true
       roles:
 	 - { role: ned300889.bootstrap }
-         - { role: ned300889.postgres }
+	 - { role: ned300889.postgres }
       vars:
          - architecture: x86_64
          - postgresVersion: 14
