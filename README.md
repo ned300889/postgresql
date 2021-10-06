@@ -1,38 +1,36 @@
 Role Name
 =========
 
-A brief description of the role goes here.
+Simple PostgreSQL role to setup and initilaze the database on Ubuntu 18.04, 20.04 and Centos &
 
-Requirements
-------------
-
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
 
 Role Variables
 --------------
+Default variables are below, feel free to update these on a playbook level for the desired version/architecture
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+    architecture: x86_64
+    postgresVersion: 14
 
 Dependencies
 ------------
+To ensure the system can be worked on and is updated to latest spec please include the below.
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+    {role: ned300889.bootstrap}
 
 Example Playbook
 ----------------
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
-
-    - hosts: servers
+    - hosts: postgresqlDatabases
+      become: true
       roles:
-         - { role: username.rolename, x: 42 }
+	 - { role: ned300889.bootstrap }
+         - { role: ned300889.postgres }
+      vars:
+         - architecture: x86_64
+         - postgresVersion: 14
 
 License
 -------
 
 BSD
 
-Author Information
-------------------
-
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
